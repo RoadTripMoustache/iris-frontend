@@ -15,6 +15,8 @@
   </div>
 </template>
 <script setup lang="ts">
+import {useAuth} from "../composables/useAuth";
+
 const { user, signInWithEmail, signInWithGoogle } = useAuth()
 const router = useRouter()
 const email = ref('')

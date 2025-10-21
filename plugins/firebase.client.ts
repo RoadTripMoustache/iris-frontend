@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 
 export default defineNuxtPlugin(() => {
     const config = useRuntimeConfig().public
@@ -8,12 +8,14 @@ export default defineNuxtPlugin(() => {
     const app = getApps().length ? getApps()[0] : initializeApp(config)
 
     const auth = getAuth(app)
+    const googleProvider = new GoogleAuthProvider()
 
     // Injection dans l'app Nuxt
     return {
         provide: {
             firebaseApp: app,
             firebaseAuth: auth,
+            googleProvider: googleProvider,
         }
     }
 })

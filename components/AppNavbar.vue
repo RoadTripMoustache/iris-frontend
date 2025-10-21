@@ -17,6 +17,8 @@
   </nav>
 </template>
 <script setup lang="ts">
+import {useAuth} from "~~/composables/useAuth";
+
 const router = useRouter()
 const { user, signOut } = useAuth()
 
