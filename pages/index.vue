@@ -1,4 +1,5 @@
 <template>
+  dd
   <div class="grid" style="gap:16px; padding-top:16px;">
     <div class="row" style="gap:12px;">
       <SearchBar style="flex:1" v-model="search" placeholder="Rechercher une idée..." />

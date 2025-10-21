@@ -5,7 +5,9 @@ export default defineNuxtPlugin(() => {
     const config = useRuntimeConfig().public
 
     // Empêche la double initialisation
-    const app = getApps().length ? getApps()[0] : initializeApp(config)
+    console.log("config : ", config)
+    const app = initializeApp(config)
+    console.log("app : ", app)
 
     const auth = getAuth(app)
     const googleProvider = new GoogleAuthProvider()

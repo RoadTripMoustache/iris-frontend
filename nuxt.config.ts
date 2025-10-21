@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     modules: [
         'nuxt-vuefire'
     ],
+    plugins: ["~/plugins/firebase.client.ts"],
     vuefire: {
         auth: {
             enabled: true,
