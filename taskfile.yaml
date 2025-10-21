@@ -1,0 +1,46 @@
+version: '3'
+
+tasks:
+
+  install:
+    desc: Install dependencies
+    cmds:
+      - npm install
+
+  start:
+    desc: Start the development server on `http://localhost:3000`
+    env:
+      CORS_ORIGIN: http://localhost:3000
+      API_URL: http://localhost:8080
+      ENVIRONMENT: local
+    cmds:
+      - npm run dev
+
+  build:
+    desc: Build the app for production
+    cmds:
+      #- npm run build
+      - task: docker_build
+
+  preview:
+    desc: Locally preview production build
+    env:
+      CORS_ORIGIN: http://localhost:3000
+      API_URL: http://localhost:8080
+      ENVIRONMENT: local
+    cmds:
+      - task: build
+      - npm run preview
+
+  docker_build:
+    cmds:
+      - docker build -t grotube:1 .
+
+  docker_run:
+    cmds:
+      - docker run -p 3000:3000 -e NUXT_CORS_ORIGIN=http://localhost:3000 -e NUXT_API_URL=http://localhost:8089 --network=host grotube:1
+
+  up:
+    dir: _local
+    cmds:
+      - docker-compose up -d
