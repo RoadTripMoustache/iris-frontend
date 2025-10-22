@@ -1,11 +1,10 @@
 <template>
   <div class="grid" style="gap:16px; padding-top:16px;">
-    <div class="row" style="gap:12px;">
+    <div class="row" style="gap:12px; align-items:center;">
       <SearchBar style="flex:1" v-model="search" placeholder="Rechercher une idée..." />
       <SortSelect v-model="sortBy" />
+      <NuxtLink class="button primary" to="/ideas/new">Nouvelle idée</NuxtLink>
     </div>
-
-    <IdeaForm v-if="showNew" @cancel="onCancelNew" @created="onCreated" />
 
     <InfiniteScroller :loadMore="loadMore" :loading="loading" :done="done">
       <div class="grid">
@@ -21,8 +20,6 @@ import { IdeasApi } from '../lib/api'
 import {useAuth} from "../composables/useAuth";
 
 const { isAdmin } = useAuth()
-const route = useRoute()
-const router = useRouter()
 
 const ideas = ref<Idea[]>([])
 const page = ref(1)
@@ -31,17 +28,6 @@ const loading = ref(false)
 const done = ref(false)
 const search = ref('')
 const sortBy = ref<'created_at'|'votes_count'>('created_at')
-
-const showNew = computed(() => route.query.new === '1')
-function onCancelNew() { router.replace({ query: { ...route.query, new: undefined } }) }
-async function onCreated() {
-  router.replace({ query: { ...route.query, new: undefined } })
-  // reload from first page
-  ideas.value = []
-  page.value = 1
-  done.value = false
-  await loadMore(true)
-}
 
 const filteredSortedIdeas = computed(() => {
   const q = search.value.trim().toLowerCase()

@@ -26,6 +26,7 @@ export interface Idea {
 export interface CreateIdeaRequest {
   title: string
   tag: IdeaTag
+  description: string
   images?: string[]
   is_open?: boolean
 }

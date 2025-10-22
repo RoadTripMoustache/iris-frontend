@@ -26,6 +26,20 @@ async function http<T>(path: string, init?: RequestInit): Promise<T> {
   return await res.json() as T
 }
 
+export const ImagesApi = {
+  upload: async (file: File): Promise<{ url: string }> => {
+    const form = new FormData()
+    form.append('file', file)
+    const headers = await getAuthHeader()
+    const res = await fetch(`${baseUrl()}/v1/images`, { method: 'POST', headers, body: form })
+    if (!res.ok) {
+      const text = await res.text()
+      throw new Error(text || res.statusText)
+    }
+    return await res.json() as { url: string }
+  }
+}
+
 export const IdeasApi = {
   list: async (pageNumber?: number, pageSize?: number): Promise<Idea[]> => {
     const params = new URLSearchParams()
