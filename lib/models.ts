@@ -9,6 +9,18 @@ export interface Comment {
   images?: string[]
 }
 
+export interface GetIdeasResponse {
+    links: {
+        first: string
+        previous: string
+        self: string
+        next: string
+        last: string
+        has_more: boolean
+    }
+    data: Idea[]
+}
+
 export interface Idea {
   id: string
   created_at: string

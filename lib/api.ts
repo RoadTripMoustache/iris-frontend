@@ -1,4 +1,4 @@
-import type { Idea, CreateIdeaRequest, AddCommentRequest, SetIdeaOpenRequest } from './models'
+import type {Idea, CreateIdeaRequest, AddCommentRequest, SetIdeaOpenRequest, GetIdeasResponse} from './models'
 import { useAuth } from '~/composables/useAuth'
 
 async function getAuthHeader(): Promise<Record<string,string>> {
@@ -44,7 +44,7 @@ export const ImagesApi = {
 }
 
 export const IdeasApi = {
-  list: async (pageNumber?: number, pageSize?: number): Promise<Idea[]> => {
+  list: async (pageNumber?: number, pageSize?: number): Promise<GetIdeasResponse> => {
     const params = new URLSearchParams()
     if (pageNumber) params.set('page[number]', String(pageNumber))
     if (pageSize) params.set('page[size]', String(pageSize))

@@ -50,9 +50,8 @@ async function loadMore(reset = false) {
   loading.value = true
   try {
     const data = await IdeasApi.list(page.value, pageSize)
-    console.log(data)
     // Vérifier que data est bien un tableau
-    const safeData = Array.isArray(data) ? data : []
+    const safeData = Array.isArray(data.data) ? data.data : []
     if (reset) {
       ideas.value = safeData
     } else {
