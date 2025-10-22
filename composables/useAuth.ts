@@ -1,5 +1,5 @@
-import { ref, computed } from 'vue'
-import { useFirebaseAuth, useCurrentUser } from 'vuefire'
+import { ref, computed, watch } from 'vue'
+import { useFirebaseAuth, useCurrentUser, getCurrentUser } from 'vuefire'
 import { signInWithEmailAndPassword, signOut as fbSignOut, signInWithPopup, GoogleAuthProvider, getIdTokenResult } from 'firebase/auth'
 
 type UserInfo = { uid: string; email: string | null; isAdmin: boolean }
@@ -15,12 +15,17 @@ export function useAuth() {
     const isAdmin = computed(() => currentUserInfo.value?.isAdmin === true)
 
     // Surveiller les changements de l'utilisateur Firebase (seulement côté client)
-    if (process.client && auth) {
+    if (process.client) {
         watch(firebaseUser, async (u) => {
             if (u) {
-                const tokenResult = await getIdTokenResult(u)
-                const isAdminClaim = tokenResult.claims['admin'] === true
-                currentUserInfo.value = { uid: u.uid, email: u.email, isAdmin: isAdminClaim }
+                try {
+                    const tokenResult = await getIdTokenResult(u)
+                    const isAdminClaim = tokenResult.claims['admin'] === true
+                    currentUserInfo.value = { uid: u.uid, email: u.email, isAdmin: isAdminClaim }
+                } catch (error) {
+                    console.error('Erreur lors de la récupération des informations utilisateur:', error)
+                    currentUserInfo.value = null
+                }
             } else {
                 currentUserInfo.value = null
             }
@@ -47,9 +52,31 @@ export function useAuth() {
         await fbSignOut(auth)
     }
 
-    async function getIdToken(): Promise<string | null> {
-        if (!auth || !auth.currentUser) return null
-        return await auth.currentUser.getIdToken()
+    async function getIdToken(forceRefresh = false): Promise<string | null> {
+        if (!process.client) {
+            return null
+        }
+        
+        // Utiliser firebaseUser.value au lieu de auth.currentUser
+        let user = firebaseUser.value
+        
+        if (!user) {
+            try {
+                user = await getCurrentUser()
+            } catch (error) {
+                console.error('Erreur lors de la récupération de l\'utilisateur courant:', error)
+                return null
+            }
+        }
+        
+        if (!user) return null
+        
+        try {
+            return await user.getIdToken(forceRefresh)
+        } catch (error) {
+            console.error('Erreur lors de la récupération du token:', error)
+            return null
+        }
     }
 
     return { user, isAdmin, loading, signInWithEmail, signInWithGoogle, signOut, getIdToken }

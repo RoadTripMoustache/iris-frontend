@@ -4,7 +4,10 @@ import { useAuth } from '~/composables/useAuth'
 async function getAuthHeader(): Promise<Record<string,string>> {
   const { getIdToken } = useAuth()
   const token = await getIdToken()
-  return token ? { Authorization: `Bearer ${token}` } : {}
+  if (!token) {
+    throw new Error('Authentication required: missing Firebase ID token')
+  }
+  return { Authorization: `Bearer ${token}` }
 }
 
 function baseUrl() {
