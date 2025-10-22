@@ -13,6 +13,12 @@ tasks:
       CORS_ORIGIN: http://localhost:3000
       API_URL: http://localhost:8080
       ENVIRONMENT: local
+      NUXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyD9CsBq3_NHrDgIoD_3ZXno3p5mbfcB_w0"
+      NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "guide-nestor-dev-40f8e.firebaseapp.com"
+      NUXT_PUBLIC_FIREBASE_PROJECT_ID: "guide-nestor-dev-40f8e"
+      NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET: "guide-nestor-dev-40f8e.firebasestorage.app"
+      NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "44089008503"
+      NUXT_PUBLIC_FIREBASE_APP_ID: "1:44089008503:web:cc221d57fc67d5d18bc172"
     cmds:
       - npm run dev
 

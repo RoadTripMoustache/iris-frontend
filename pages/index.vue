@@ -1,5 +1,4 @@
 <template>
-  dd
   <div class="grid" style="gap:16px; padding-top:16px;">
     <div class="row" style="gap:12px;">
       <SearchBar style="flex:1" v-model="search" placeholder="Rechercher une idée..." />
@@ -12,7 +11,7 @@
       <div class="grid">
         <IdeaCard v-for="it in filteredSortedIdeas" :key="it.id" :idea="it" @update="onItemUpdate(it, $event)" />
       </div>
-      <div v-if="!filteredSortedIdeas.length && !loading" class="empty">Aucune idée</div>
+      <div v-if="filteredSortedIdeas!=undefined && !filteredSortedIdeas.length && !loading" class="empty">Aucune idée</div>
     </InfiniteScroller>
   </div>
 </template>
@@ -65,21 +64,31 @@ async function loadMore(reset = false) {
   loading.value = true
   try {
     const data = await IdeasApi.list(page.value, pageSize)
+    console.log(data)
+    // Vérifier que data est bien un tableau
+    const safeData = Array.isArray(data) ? data : []
     if (reset) {
-      ideas.value = data
+      ideas.value = safeData
     } else {
-      ideas.value.push(...data)
+      ideas.value.push(...safeData)
     }
-    if (data.length < pageSize) done.value = true
-    else page.value += 1
+    if (safeData.length < pageSize) {
+      done.value = true
+    } else {
+      page.value += 1
+    }
   } catch (e) {
     console.error(e)
+    done.value = true // Arrêter le chargement en cas d'erreur
   } finally {
     loading.value = false
   }
 }
 
+// Ne charger les données que côté client
 onMounted(() => {
-  loadMore()
+  if (process.client) {
+    loadMore()
+  }
 })
 </script>
