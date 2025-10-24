@@ -6,10 +6,10 @@
         <span>Iris</span>
       </div>
       <div class="row" style="gap:8px; align-items:center;">
-        <LanguageSelector />
         <button v-if="!user" class="button" @click="goLogin">{{ $t('nav.login') }}</button>
         <div v-else class="row" style="gap:8px">
           <span class="meta">{{ user.email }}</span>
+          <LanguageSelector />
           <button class="button" @click="logout">{{ $t('nav.logout') }}</button>
         </div>
       </div>
