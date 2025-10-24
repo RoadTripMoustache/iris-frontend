@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "Iris"
+  },
+  "nav": {
+    "login": "Se connecter",
+    "logout": "Se déconnecter"
+  },
+  "home": {
+    "title": "Iris | Accueil",
+    "search_placeholder": "Rechercher une idée...",
+    "new_idea": "Nouvelle idée",
+    "empty": "Aucune idée",
+    "sort_date": "Par date",
+    "sort_votes": "Par votes"
+  },
+  "idea": {
+    "new_title": "Iris | Nouvelle idée",
+    "new_heading": "Nouvelle idée",
+    "title": "Titre",
+    "description": "Description",
+    "category": "Catégorie",
+    "images_label": "Images (.jpg, .png, < 2Mo)",
+    "cancel": "Annuler",
+    "create": "Créer",
+    "error_type": "Format d'image non supporté.",
+    "error_size": "Image trop volumineuse (> 2Mo).",
+    "error_upload": "Échec de l'upload de l'image.",
+    "error_required": "Le titre et la description sont obligatoires.",
+    "error_create": "Erreur lors de la création de l'idée.",
+    "vote": "Voter",
+    "unvote": "Retirer",
+    "created_on": "Créée le",
+    "open": "Ouverte",
+    "closed": "Fermée",
+    "voters": "votant | votants",
+    "comments": "commentaire | commentaires",
+    "close": "Fermer",
+    "open_action": "Ouvrir",
+    "comments_heading": "Commentaires",
+    "no_comments": "Aucun commentaire pour le moment",
+    "add_comment_placeholder": "Ajouter un commentaire...",
+    "publish": "Publier"
+  },
+  "login": {
+    "title": "Iris | Se connecter",
+    "heading": "Se connecter",
+    "email": "Email",
+    "password": "Mot de passe",
+    "submit": "Connexion",
+    "continue_google": "Continuer avec Google",
+    "error_login": "Erreur de connexion",
+    "error_google": "Erreur Google"
+  },
+  "comment": {
+    "edit": "Modifier",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "save": "Enregistrer"
+  },
+  "tags": {
+    "bug": "bug",
+    "enhancement": "enhancement"
+  },
+  "lang": {
+    "label": "Langue",
+    "fr": "Français",
+    "en": "Anglais"
+  }
+}
