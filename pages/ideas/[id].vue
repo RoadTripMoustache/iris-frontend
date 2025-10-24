@@ -36,8 +36,7 @@ const idea = ref<Idea | null>(null)
 const newComment = ref('')
 
 async function fetchIdea() {
-  const list = await IdeasApi.list(1, 200)
-  idea.value = list.find(i => i.id === route.params.id) || null
+  idea.value = await IdeasApi.getOne(route.params.id as string)
 }
 
 function canEdit(userId: string) {
@@ -50,16 +49,19 @@ async function onAddComment() {
   idea.value = updated
   newComment.value = ''
 }
+
 async function onEditComment(id: string, message: string) {
   if (!idea.value) return
   const updated = await IdeasApi.editComment(idea.value.id, id, { message })
   idea.value = updated
 }
+
 async function onDeleteComment(id: string) {
   if (!idea.value) return
   const updated = await IdeasApi.deleteComment(idea.value.id, id)
   idea.value = updated
 }
+
 async function toggleOpen() {
   if (!idea.value) return
   const updated = await IdeasApi.setOpen(idea.value.id, !idea.value.is_open)

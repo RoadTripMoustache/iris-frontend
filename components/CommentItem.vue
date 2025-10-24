@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <div class="row" style="justify-content: space-between;">
-      <div class="meta">{{ formatDate(comment.created_at) }} • {{ comment.user_id }}</div>
+      <div class="meta">{{ formatDate(comment.created_at) }}</div>
       <div class="row" v-if="canEdit">
         <button class="button ghost" @click="editing = !editing">{{ editing ? 'Annuler' : 'Modifier' }}</button>
         <button class="button ghost" style="color: var(--danger)" @click="$emit('delete', comment.id)">Supprimer</button>

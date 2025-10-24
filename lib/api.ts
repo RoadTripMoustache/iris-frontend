@@ -54,6 +54,9 @@ export const IdeasApi = {
   create: async (payload: CreateIdeaRequest): Promise<Idea> => {
     return http<Idea>('/v1/ideas', { method: 'POST', body: JSON.stringify(payload) })
   },
+  getOne: async (id: string): Promise<Idea> => {
+    return http<Idea>(`/v1/ideas/${id}`, { method: 'GET' })
+  },
   vote: async (id: string): Promise<Idea> => {
     return http<Idea>(`/v1/ideas/${id}/vote`, { method: 'POST' })
   },
