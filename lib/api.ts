@@ -49,7 +49,7 @@ export const IdeasApi = {
     if (pageNumber) params.set('page[number]', String(pageNumber))
     if (pageSize) params.set('page[size]', String(pageSize))
     const qs = params.toString()
-    return http<Idea[]>(`/v1/ideas${qs ? `?${qs}` : ''}`)
+    return http<GetIdeasResponse>(`/v1/ideas${qs ? `?${qs}` : ''}`)
   },
   create: async (payload: CreateIdeaRequest): Promise<Idea> => {
     return http<Idea>('/v1/ideas', { method: 'POST', body: JSON.stringify(payload) })

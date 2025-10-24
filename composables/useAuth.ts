@@ -12,22 +12,26 @@ export function useAuth() {
     const loading = ref(true)
 
     const user = computed(() => currentUserInfo.value)
-    const isAdmin = computed(() => currentUserInfo.value?.isAdmin === true)
+    const isAdmin = ref(false)
 
     // Surveiller les changements de l'utilisateur Firebase (seulement côté client)
     if (process.client) {
         watch(firebaseUser, async (u) => {
             if (u) {
                 try {
+                    // On lit toujours les claims, mais on s'appuie sur le backend pour la vérité
                     const tokenResult = await getIdTokenResult(u)
                     const isAdminClaim = tokenResult.claims['admin'] === true
                     currentUserInfo.value = { uid: u.uid, email: u.email, isAdmin: isAdminClaim }
+                    await fetchAdminFromBackend()
                 } catch (error) {
                     console.error('Erreur lors de la récupération des informations utilisateur:', error)
                     currentUserInfo.value = null
+                    isAdmin.value = false
                 }
             } else {
                 currentUserInfo.value = null
+                isAdmin.value = false
             }
             loading.value = false
         }, { immediate: true })
@@ -39,17 +43,20 @@ export function useAuth() {
     async function signInWithEmail(email: string, password: string) {
         if (!auth) throw new Error('Auth non disponible')
         await signInWithEmailAndPassword(auth, email, password)
+        await fetchAdminFromBackend()
     }
 
     async function signInWithGoogle() {
         if (!auth) throw new Error('Auth non disponible')
         const googleProvider = new GoogleAuthProvider()
         await signInWithPopup(auth, googleProvider)
+        await fetchAdminFromBackend()
     }
 
     async function signOut() {
         if (!auth) throw new Error('Auth non disponible')
         await fbSignOut(auth)
+        isAdmin.value = false
     }
 
     async function getIdToken(forceRefresh = false): Promise<string | null> {
@@ -76,6 +83,32 @@ export function useAuth() {
         } catch (error) {
             console.error('Erreur lors de la récupération du token:', error)
             return null
+        }
+    }
+
+    async function fetchAdminFromBackend() {
+        if (!process.client) return
+        try {
+            const token = await getIdToken()
+            if (!token) {
+                isAdmin.value = false
+                return
+            }
+            const config = useRuntimeConfig()
+            const base = config.public.apiBaseUrl?.replace(/\/$/, '') || ''
+            const res = await fetch(`${base}/v1/admin/me`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+            })
+            if (!res.ok) {
+                isAdmin.value = false
+                return
+            }
+            const data = await res.json() as { is_admin?: boolean }
+            isAdmin.value = data?.is_admin === true
+        } catch (e) {
+            console.error('Erreur lors de l\'appel /v1/admin/me:', e)
+            isAdmin.value = false
         }
     }
 
