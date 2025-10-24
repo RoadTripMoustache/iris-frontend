@@ -4,7 +4,8 @@
   </div>
 </template>
 <script setup lang="ts">
-useHead({ title: "Iris | Nouvelle idée" })
+const { t } = useI18n()
+useHead({ title: t('idea.new_title') as string })
 const router = useRouter()
 function goHome() { router.push('/') }
 function onCreated() { router.push('/') }

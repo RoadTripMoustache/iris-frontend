@@ -3,7 +3,7 @@
     <div class="idea-vote">
       <div style="font-size:18px; font-weight:700;">{{ idea.votes_count }}</div>
       <button class="button" :class="{ primary: idea.user_has_voted }" @click="toggleVote" :disabled="!idea.is_open && !idea.user_has_voted">
-        {{ idea.user_has_voted ? 'Retirer' : 'Voter' }}
+        {{ idea.user_has_voted ? $t('idea.unvote') : $t('idea.vote') }}
       </button>
     </div>
     <div class="idea-content">
@@ -13,7 +13,7 @@
         </NuxtLink>
         <span class="badge">{{ idea.tag }}</span>
       </div>
-      <div class="meta">Créée le {{ formatDate(idea.created_at) }} • {{ idea.is_open ? 'Ouverte' : 'Fermée' }}</div>
+      <div class="meta">{{ $t('idea.created_on') }} {{ formatDate(idea.created_at) }} • {{ idea.is_open ? $t('idea.open') : $t('idea.closed') }}</div>
       <slot />
     </div>
   </div>

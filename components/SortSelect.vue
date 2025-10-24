@@ -1,7 +1,7 @@
 <template>
   <select class="select" v-model="model">
-    <option value="created_at">Par date</option>
-    <option value="votes_count">Par votes</option>
+    <option value="created_at">{{ $t('home.sort_date') }}</option>
+    <option value="votes_count">{{ $t('home.sort_votes') }}</option>
   </select>
 </template>
 <script setup lang="ts">

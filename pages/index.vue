@@ -1,16 +1,16 @@
 <template>
   <div class="grid" style="gap:16px; padding-top:16px;">
     <div class="row" style="gap:12px; align-items:center;">
-      <SearchBar style="flex:1" v-model="search" placeholder="Rechercher une idée..." />
+      <SearchBar style="flex:1" v-model="search" :placeholder="$t('home.search_placeholder')" />
       <SortSelect v-model="sortBy" />
-      <NuxtLink class="button primary" to="/ideas/new">Nouvelle idée</NuxtLink>
+      <NuxtLink class="button primary" to="/ideas/new">{{ $t('home.new_idea') }}</NuxtLink>
     </div>
 
     <InfiniteScroller :loadMore="loadMore" :loading="loading" :done="done">
       <div class="grid">
         <IdeaCard v-for="it in filteredSortedIdeas" :key="it.id" :idea="it" @update="onItemUpdate(it, $event)" />
       </div>
-      <div v-if="filteredSortedIdeas!=undefined && !filteredSortedIdeas.length && !loading" class="empty">Aucune idée</div>
+      <div v-if="filteredSortedIdeas!=undefined && !filteredSortedIdeas.length && !loading" class="empty">{{ $t('home.empty') }}</div>
     </InfiniteScroller>
   </div>
 </template>
@@ -18,7 +18,8 @@
 import type { Idea } from '../lib/models'
 import { IdeasApi } from '../lib/api'
 import {useAuth} from "../composables/useAuth";
-useHead({ title: "Iris | Accueil" })
+const { t } = useI18n()
+useHead(() => ({ title: t('home.title') as string }))
 
 const { isAdmin } = useAuth()
 

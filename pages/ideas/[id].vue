@@ -2,24 +2,24 @@
   <div class="grid" style="gap:16px; padding-top:16px;">
     <IdeaCard v-if="idea" :idea="idea" @update="(val)=> idea = val">
       <div class="row" style="justify-content: space-between;">
-        <div class="meta">{{ idea?.voters.length }} votants • {{ idea?.comments.length }} commentaires</div>
+        <div class="meta">{{ idea?.voters.length }} {{ $t('idea.voters', idea?.voters.length) }} • {{ idea?.comments.length }} {{ $t('idea.comments', idea?.comments.length) }}</div>
         <div class="row" v-if="isAdmin">
-          <button class="button" @click="toggleOpen">{{ idea?.is_open ? 'Fermer' : 'Ouvrir' }}</button>
+          <button class="button" @click="toggleOpen">{{ idea?.is_open ? $t('idea.close') : $t('idea.open_action') }}</button>
         </div>
       </div>
     </IdeaCard>
 
     <div class="card" v-if="idea">
-      <h3>Commentaires</h3>
-      <div v-if="!idea.comments.length" class="empty">Aucun commentaire.</div>
+      <h3>{{ $t('idea.comments_heading') }}</h3>
+      <div v-if="!idea.comments.length" class="empty">{{ $t('idea.no_comments') }}</div>
       <div v-else>
         <CommentItem v-for="c in idea.comments" :key="c.id" :comment="c" :canEdit="canEdit(c.user_id)" @update="onEditComment" @delete="onDeleteComment" />
       </div>
       <hr class="sep" />
       <form class="grid" style="gap:8px;" @submit.prevent="onAddComment">
-        <textarea class="input" v-model="newComment" placeholder="Ajouter un commentaire..." rows="3"></textarea>
+        <textarea class="input" v-model="newComment" :placeholder="$t('idea.add_comment_placeholder')" rows="3"></textarea>
         <div class="row" style="justify-content: flex-end;">
-          <button class="button primary" :disabled="!newComment.trim()">Publier</button>
+          <button class="button primary" :disabled="!newComment.trim()">{{ $t('idea.publish') }}</button>
         </div>
       </form>
     </div>
@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import type { Idea } from '~/lib/models'
 import { IdeasApi } from '~/lib/api'
+const { t } = useI18n()
 
 const { user, isAdmin } = useAuth()
 const route = useRoute()

@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     },
     css: ['~/assets/styles.css'],
     modules: [
-        'nuxt-vuefire'
+        'nuxt-vuefire',
+        '@nuxtjs/i18n'
     ],
     vuefire: {
         auth: {
@@ -32,8 +33,16 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
+            defaultLocale: process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'fr',
         }
     },
     // Désactiver SSR complètement si les problèmes persistent
     ssr: false,
+    i18n: {
+        locales: [
+            { code: 'fr', name: 'Français', file: 'fr.json' },
+            { code: 'en', name: 'English', file: 'en.json' }
+        ],
+        defaultLocale: process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'fr',
+    }
 })
