@@ -14,7 +14,7 @@
 
     <div class="grid" style="gap:8px;">
       <label class="meta">{{ $t('idea.images_label') }}</label>
-      <input type="file" multiple accept="image/png,image/jpeg" @change="onFilesSelected" />
+      <input type="file" multiple accept="image/png,image/jpeg" @change="onFilesSelected" v-if="images.length < 5" />
       <div v-if="images.length" class="row wrap" style="gap:8px;">
         <span v-for="(url, idx) in images" :key="idx" class="chip">{{ url }}</span>
       </div>
