@@ -18,6 +18,7 @@
 import type { Idea } from '../lib/models'
 import { IdeasApi } from '../lib/api'
 import {useAuth} from "../composables/useAuth";
+useHead({ title: "Iris | Accueil" })
 
 const { isAdmin } = useAuth()
 

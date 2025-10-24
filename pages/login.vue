@@ -15,6 +15,7 @@
   </div>
 </template>
 <script setup lang="ts">
+useHead({ title: "Iris | Se connecter" })
 import {useAuth} from "../composables/useAuth";
 
 const { user, signInWithEmail, signInWithGoogle } = useAuth()

@@ -35,8 +35,13 @@ const route = useRoute()
 const idea = ref<Idea | null>(null)
 const newComment = ref('')
 
+function updateTitle(ideaName: string) {
+  useHead({ title: "Iris | " + ideaName })
+}
+updateTitle("")
 async function fetchIdea() {
   idea.value = await IdeasApi.getOne(route.params.id as string)
+  updateTitle(idea.value.title)
 }
 
 function canEdit(userId: string) {
