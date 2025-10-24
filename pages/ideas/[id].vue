@@ -9,6 +9,14 @@
       </div>
     </IdeaCard>
 
+    <div class="card" v-if="idea && idea.images && idea.images.length">
+      <div class="row wrap" style="gap:8px;">
+        <a v-for="(img, idx) in idea.images" :key="idx" :href="baseUrl() + img" target="_blank" rel="noopener">
+          <img :src="baseUrl() + img" :alt="`Idea image ${idx+1}`" style="height:120px; max-width:180px; border-radius:8px; object-fit:cover;" />
+        </a>
+      </div>
+    </div>
+
     <div class="card" v-if="idea">
       <h3>{{ $t('idea.comments_heading') }}</h3>
       <div v-if="!idea.comments.length" class="empty">{{ $t('idea.no_comments') }}</div>
@@ -28,7 +36,11 @@
 <script setup lang="ts">
 import type { Idea } from '~/lib/models'
 import { IdeasApi } from '~/lib/api'
-const { t } = useI18n()
+
+function baseUrl() {
+  const config = useRuntimeConfig()
+  return config.public.apiBaseUrl?.replace(/\/$/, '') || ''
+}
 
 const { user, isAdmin } = useAuth()
 const route = useRoute()
