@@ -34,3 +34,8 @@ const logout = async () => {
   goTo('/login')
 }
 </script>
+<style scoped>
+.brand {
+  cursor: pointer;
+}
+</style>
