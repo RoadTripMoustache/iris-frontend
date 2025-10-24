@@ -109,4 +109,4 @@ Côté Firebase, pour l'admin, ajoutez une custom claim `admin: true` aux utilis
 Palette moderne et claire, menu fixe en haut avec logo.
 
 ---
-- En tant qu'administrateur, pouvoir changer le logo et le titre de l'application.
+- Dans les configs, pouvoir changer le logo et le titre de l'application.
