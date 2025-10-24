@@ -11,7 +11,7 @@ tasks:
     desc: Start the development server on `http://localhost:3000`
     env:
       CORS_ORIGIN: http://localhost:3000
-      API_URL: http://localhost:8080
+      NUXT_PUBLIC_API_BASE_URL: http://localhost:8081
       ENVIRONMENT: local
       NUXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyD9CsBq3_NHrDgIoD_3ZXno3p5mbfcB_w0"
       NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "guide-nestor-dev-40f8e.firebaseapp.com"

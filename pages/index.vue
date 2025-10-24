@@ -43,6 +43,15 @@ const filteredSortedIdeas = computed(() => {
 function onItemUpdate(oldItem: Idea, updated: Idea) {
   const idx = ideas.value.findIndex(i => i.id === oldItem.id)
   if (idx >= 0) ideas.value[idx] = updated
+  
+  // Recharger toute la liste après un vote/unvote
+  refreshIdeas()
+}
+
+async function refreshIdeas() {
+  page.value = 1
+  done.value = false
+  await loadMore(true)
 }
 
 async function loadMore(reset = false) {
