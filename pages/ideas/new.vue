@@ -5,6 +5,7 @@
 </template>
 <script setup lang="ts">
 const { t } = useI18n()
+
 useHead({ title: t('idea.new_title') as string })
 const router = useRouter()
 function goHome() { router.push('/') }

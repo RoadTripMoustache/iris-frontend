@@ -7,7 +7,7 @@
     "logout": "Se déconnecter"
   },
   "home": {
-    "title": "Iris | Accueil",
+    "title": "Accueil",
     "search_placeholder": "Rechercher une idée...",
     "new_idea": "Nouvelle idée",
     "empty": "Aucune idée",
@@ -15,7 +15,7 @@
     "sort_votes": "Par votes"
   },
   "idea": {
-    "new_title": "Iris | Nouvelle idée",
+    "new_title": "Nouvelle idée",
     "new_heading": "Nouvelle idée",
     "title": "Titre",
     "description": "Description",
@@ -24,7 +24,7 @@
     "cancel": "Annuler",
     "create": "Créer",
     "error_type": "Format d'image non supporté.",
-    "error_size": "Image trop volumineuse (> 2Mo).",
+    "error_size": "Image trop volumineuse (> 2Mo)",
     "error_upload": "Échec de l'upload de l'image.",
     "error_required": "Le titre et la description sont obligatoires.",
     "error_create": "Erreur lors de la création de l'idée.",
@@ -43,7 +43,7 @@
     "publish": "Publier"
   },
   "login": {
-    "title": "Iris | Se connecter",
+    "title": "Se connecter",
     "heading": "Se connecter",
     "email": "Email",
     "password": "Mot de passe",

@@ -49,7 +49,7 @@ const idea = ref<Idea | null>(null)
 const newComment = ref('')
 
 function updateTitle(ideaName: string) {
-  useHead({ title: "Iris | " + ideaName })
+  useHead({ title: ideaName })
 }
 updateTitle("")
 async function fetchIdea() {

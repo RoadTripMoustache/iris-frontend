@@ -7,7 +7,7 @@
     "logout": "Sign out"
   },
   "home": {
-    "title": "Iris | Home",
+    "title": "Home",
     "search_placeholder": "Search an idea...",
     "new_idea": "New idea",
     "empty": "No ideas",
@@ -15,7 +15,7 @@
     "sort_votes": "By votes"
   },
   "idea": {
-    "new_title": "Iris | New idea",
+    "new_title": "New idea",
     "new_heading": "New idea",
     "title": "Title",
     "description": "Description",
@@ -43,7 +43,7 @@
     "publish": "Publish"
   },
   "login": {
-    "title": "Iris | Sign in",
+    "title": "Sign in",
     "heading": "Sign in",
     "email": "Email",
     "password": "Password",

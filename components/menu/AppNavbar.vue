@@ -2,8 +2,8 @@
   <nav class="navbar">
     <div class="navbar-inner container">
       <div class="brand" v-on:click="goTo('/')">
-        <img src="/logo.png" alt="Iris" />
-        <span>Iris</span>
+        <img :src="icon" :alt="title" />
+        <span>{{ title }}</span>
       </div>
       <div class="row" style="gap:8px; align-items:center;">
         <button v-if="!user" class="button" @click="goLogin">{{ $t('nav.login') }}</button>
@@ -19,6 +19,10 @@
 <script setup lang="ts">
 import {useAuth} from "~~/composables/useAuth";
 import LanguageSelector from "~/components/menu/LanguageSelector.vue";
+
+const config = useRuntimeConfig()
+const title = config.public.appTitle
+const icon = config.public.appIcon
 
 const goTo = (path) => {
   const localePath = useLocalePath()

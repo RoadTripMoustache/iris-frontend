@@ -19,7 +19,7 @@ import type { Idea } from '../lib/models'
 import { IdeasApi } from '../lib/api'
 import {useAuth} from "../composables/useAuth";
 const { t } = useI18n()
-useHead(() => ({ title: t('home.title') as string }))
+useHead({ title: t('home.title') as string })
 
 const { isAdmin } = useAuth()
 

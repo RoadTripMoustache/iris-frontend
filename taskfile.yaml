@@ -19,6 +19,7 @@ tasks:
       NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET: "guide-nestor-dev-40f8e.firebasestorage.app"
       NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "44089008503"
       NUXT_PUBLIC_FIREBASE_APP_ID: "1:44089008503:web:cc221d57fc67d5d18bc172"
+      #NUXT_PUBLIC_TITLE: niite
     cmds:
       - npm run dev
 

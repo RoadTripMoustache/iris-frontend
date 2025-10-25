@@ -34,6 +34,8 @@ export default defineNuxtConfig({
         public: {
             apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
             defaultLocale: process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'fr',
+            appTitle: process.env.NUXT_PUBLIC_TITLE || 'Iris',
+            appIcon: process.env.NUXT_PUBLIC_ICON || '/logo.png',
         }
     },
     // Désactiver SSR complètement si les problèmes persistent
