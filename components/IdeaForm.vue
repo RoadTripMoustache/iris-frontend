@@ -55,7 +55,8 @@ async function onFilesSelected(e: Event) {
       const { url } = await ImagesApi.upload(file)
       images.value.push(url)
     } catch (e:any) {
-      error.value = e?.message || (t('idea.error_upload') as string)
+      let errorReponse = JSON.parse(e?.message || '')
+      error.value = t("error."+errorReponse["error_code"]) || (t('idea.error_upload') as string)
     }
   }
   // reset input value to allow re-selecting the same files
@@ -79,7 +80,8 @@ const onSubmit = async () => {
     images.value = []
     tag.value = 'enhancement'
   } catch (e:any) {
-    error.value = e?.message || (t('idea.error_create') as string)
+    let errorReponse = JSON.parse(e?.message || '')
+    error.value = t("error."+errorReponse["error_code"]) || (t('idea.error_create') as string)
   } finally {
     submitting.value = false
   }

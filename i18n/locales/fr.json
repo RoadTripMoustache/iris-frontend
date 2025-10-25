@@ -66,5 +66,13 @@
     "label": "Langue",
     "fr": "Français",
     "en": "Anglais"
+  },
+  "error": {
+    "RES000": "Image non trouvée",
+    "IMG000": "Image trop volumineuse",
+    "IMG001": "Extension non autorisée",
+    "IMG002": "Nom d'image vide",
+    "IMG003": "Le nombre d'images dépasse le nombre maximal autorisé",
+    "SER000": "Erreur serveur"
   }
 }

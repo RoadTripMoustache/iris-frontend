@@ -66,5 +66,13 @@
     "label": "Language",
     "fr": "French",
     "en": "English"
+  },
+  "error": {
+    "RES000": "Image not found",
+    "IMG000": "Image too big",
+    "IMG001": "Extension not allowed",
+    "IMG002": "Empty image name",
+    "IMG003": "Too many images",
+    "SER000": "Internal server error"
   }
 }
