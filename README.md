@@ -121,3 +121,5 @@ Palette moderne et claire, menu fixe en haut avec logo.
 - Ajouter un endpoint pour gérer la suppression d'une image
 - Permettre à l'utilisateur ayant ouvert l'idée de retirer des images ou de les retirer lors de la création de l'idée (et de la supprimer côté serveur)
 - Lors de la création d'une idée, ne pas avoir la liste des urls affichées pour les images, mais les images en miniature
+- Afficher le logo sur la page de connexion
+- Afficher un titre sur la page de connexion pour expliquer où sont les utilisateurs, qu'ils ne croient pas être dans guidenestor par exemple
