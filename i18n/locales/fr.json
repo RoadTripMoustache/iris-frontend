@@ -4,7 +4,8 @@
   },
   "nav": {
     "login": "Se connecter",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "logout_confirm": "Êtes-vous sûr de vouloir vous déconnecter ?"
   },
   "home": {
     "title": "Accueil",

@@ -23,6 +23,7 @@ import LanguageSelector from "~/components/menu/LanguageSelector.vue";
 const config = useRuntimeConfig()
 const title = config.public.appTitle
 const icon = config.public.appIcon
+const { t } = useI18n();
 
 const goTo = (path) => {
   const localePath = useLocalePath()
@@ -31,11 +32,14 @@ const goTo = (path) => {
 
 const { user, signOut } = useAuth()
 
-
 const goLogin = () => goTo('/login')
 const logout = async () => {
-  await signOut()
-  goTo('/login')
+  const userConfirmed: boolean = window.confirm(t("nav.logout_confirm"));
+
+  if (userConfirmed) {
+    await signOut()
+    goTo('/login')
+  }
 }
 </script>
 <style scoped>
