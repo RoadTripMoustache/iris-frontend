@@ -50,7 +50,8 @@
     "submit": "Connexion",
     "continue_google": "Continuer avec Google",
     "error_login": "Erreur de connexion",
-    "error_google": "Erreur Google"
+    "error_google": "Erreur Google",
+    "support_title": "Centre de support et d'innovation"
   },
   "comment": {
     "edit": "Modifier",

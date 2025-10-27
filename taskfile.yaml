@@ -21,6 +21,7 @@ tasks:
       NUXT_PUBLIC_FIREBASE_APP_ID: "1:44089008503:web:cc221d57fc67d5d18bc172"
       #NUXT_PUBLIC_TITLE: Guide Nestor
       #NUXT_PUBLIC_ICON: https://guidenestor.com/assets/images/nestor_logo_200.png
+      #NUXT_PUBLIC_LOGIN_TITLE: Centre
     cmds:
       - npm run dev
 

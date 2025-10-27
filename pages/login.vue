@@ -1,7 +1,11 @@
 <template>
   <div class="container" style="max-width:420px; padding-top:56px;">
     <div class="card grid" style="gap:16px;">
-      <h2>{{ $t('login.heading') }}</h2>
+      <div style="text-align:center;">
+      <img :src="icon" :alt="title" />
+      <h1>{{ title }}</h1>
+      <h3>{{ config.public.appLoginTitle || $t('login.support_title') }}</h3>
+      </div>
       <form @submit.prevent="onSubmit" class="grid" style="gap:12px;">
         <input class="input" v-model="email" type="email" :placeholder="$t('login.email')" required />
         <input class="input" v-model="password" type="password" :placeholder="$t('login.password')" required />
@@ -14,6 +18,8 @@
 
       </div>
       <p v-if="error" class="meta" style="color: var(--danger)">{{ error }}</p>
+
+        <LanguageSelector />
     </div>
   </div>
 </template>
@@ -23,11 +29,15 @@
 }
 </style>
 <script setup lang="ts">
+const config = useRuntimeConfig()
+const title = config.public.appTitle
+const icon = config.public.appIcon
 import GoogleLogo from "~/components/logos/GoogleLogo.vue";
 
 const { t } = useI18n()
 useHead({ title: t('login.title') as string })
 import {useAuth} from "../composables/useAuth";
+import LanguageSelector from "~/components/menu/LanguageSelector.vue";
 
 const { user, signInWithEmail, signInWithGoogle } = useAuth()
 const router = useRouter()

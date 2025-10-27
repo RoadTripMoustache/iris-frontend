@@ -50,7 +50,8 @@
     "submit": "Sign in",
     "continue_google": "Continue with Google",
     "error_login": "Login error",
-    "error_google": "Google error"
+    "error_google": "Google error",
+    "support_title": "Support and idea center"
   },
   "comment": {
     "edit": "Edit",
