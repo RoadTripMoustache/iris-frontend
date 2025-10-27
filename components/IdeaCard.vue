@@ -11,13 +11,23 @@
         <NuxtLink :to="`/ideas/${idea.id}`" style="font-weight:600; text-decoration:none; color:inherit;">
           {{ idea.title }}
         </NuxtLink>
-        <span class="badge">{{ idea.tag }}</span>
+        <span :class="'badge '+ idea.tag ">{{ $t('tags.'+ idea.tag) }}</span>
       </div>
       <div class="meta">{{ $t('idea.created_on') }} {{ formatDate(idea.created_at) }} • {{ idea.is_open ? $t('idea.open') : $t('idea.closed') }}</div>
       <slot />
     </div>
   </div>
 </template>
+<style>
+.bug {
+  background-color: #ffbcbc;
+  border-color: #cc7f7f;
+}
+.enhancement {
+  background-color: #c1ecff;
+  border-color: #6a9ac1;
+}
+</style>
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import type { Idea } from '~/lib/models'

@@ -7,8 +7,8 @@
     <div class="row">
       <label class="meta" style="width:120px;">{{ $t('idea.category') }}</label>
       <select class="select" v-model="tag">
-        <option value="bug">{{ $t('tags.bug') }}</option>
         <option value="enhancement">{{ $t('tags.enhancement') }}</option>
+        <option value="bug">{{ $t('tags.bug') }}</option>
       </select>
     </div>
 
