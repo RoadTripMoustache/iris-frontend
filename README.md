@@ -115,7 +115,7 @@ Palette moderne et claire, menu fixe en haut avec logo.
 - S'assurer d'avoir un beau message d'erreur dans la langue de l'utilisateur pour la création /modification d'une idée ou d'un commentaire
 - Reviser logo google
 - Revoir page de connexion
-- Revoir l'espacement sur les bords extérieurs
+- 
 - S'assurer que le tag "enhancement"/"bug" soit traduits (formulaire et liste idées) et qu'il soit avec une couleur
 - Ajouter dans le backend un cron qui tourne toutes les heures pour supprimer les images qui ne sont pas stockées en BD
 - Ajouter un endpoint pour gérer la suppression d'une image
