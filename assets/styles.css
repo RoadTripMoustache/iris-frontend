@@ -20,7 +20,7 @@ body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI
 .navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 16px; }
 .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--brand); text-decoration: none; }
 .brand img { width: 32px; height: 32px; }
-.button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: #fff; border-radius: 10px; padding: 8px 12px; color: var(--text); cursor: pointer; transition: all .15s ease; }
+.button { align-items: center; gap: 8px; border: 1px solid var(--border); background: #fff; border-radius: 10px; padding: 8px 12px; color: var(--text); cursor: pointer; transition: all .15s ease; }
 .button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
 .button.primary:hover { background: var(--primary-600); }
 .button.ghost { background: transparent; }

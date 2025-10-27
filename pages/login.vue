@@ -8,13 +8,23 @@
         <button class="button primary" :disabled="submitting">{{ $t('login.submit') }}</button>
       </form>
       <div class="row" style="justify-content: center;">
-        <button class="button" @click="onGoogle" :disabled="submitting">{{ $t('login.continue_google') }}</button>
+        <button class="button" @click="onGoogle" :disabled="submitting" :title="t('login.continue_google')">
+          <GoogleLogo/>
+        </button>
+
       </div>
       <p v-if="error" class="meta" style="color: var(--danger)">{{ error }}</p>
     </div>
   </div>
 </template>
+<style scoped>
+.button {
+  border:none;
+}
+</style>
 <script setup lang="ts">
+import GoogleLogo from "~/components/logos/GoogleLogo.vue";
+
 const { t } = useI18n()
 useHead({ title: t('login.title') as string })
 import {useAuth} from "../composables/useAuth";
