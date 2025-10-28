@@ -1,7 +1,7 @@
 <template>
   <div class="imgCard">
     <img :src="baseUrl() + props.image" :alt="`Idea image ${index}`" />
-    <span class="material-icons" v-on:click="deleteImage(props.image)">close</span>
+    <span class="material-icons" v-on:click="deleteImage(props.image)" v-if="isCreationForm">close</span>
   </div>
 </template>
 <style scoped>
@@ -59,6 +59,6 @@ function baseUrl() {
 
 function deleteImage(image: string) {
   ImagesApi.delete(image)
-  props.onDelete()
+  props.onDelete(image)
 }
 </script>

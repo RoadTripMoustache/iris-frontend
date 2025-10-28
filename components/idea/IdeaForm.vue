@@ -64,8 +64,8 @@ async function onFilesSelected(e: Event) {
   input.value = ''
 }
 
-function onImageDeleted() {
-  images.value = images.value.filter(i => !images.value.includes(i))
+function onImageDeleted(url: string) {
+  images.value = images.value.filter(i => i.trim() !== url.trim())
 }
 
 const onSubmit = async () => {
@@ -78,6 +78,7 @@ const onSubmit = async () => {
   }
   try {
     submitting.value = true
+    console.log("Creating idea", { title: ti, tag: tag.value, description: d, images: images.value })
     await IdeasApi.create({ title: ti, tag: tag.value, description: d, images: images.value } as CreateIdeaRequest)
     emit('created')
     title.value = ''
