@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     css: ['~/assets/styles.css'],
     modules: [
         'nuxt-vuefire',
-        '@nuxtjs/i18n'
+        '@nuxtjs/i18n',
+        '@nuxtjs/google-fonts'
     ],
     vuefire: {
         auth: {
@@ -39,7 +40,11 @@ export default defineNuxtConfig({
             appIcon: process.env.NUXT_PUBLIC_ICON || '/logo.png',
         }
     },
-    // Désactiver SSR complètement si les problèmes persistent
+    googleFonts: {
+        families: {
+            'Material Icons': true // Example: loads Material Icons
+        },
+    },
     ssr: false,
     i18n: {
         locales: [

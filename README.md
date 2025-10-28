@@ -109,14 +109,9 @@ Côté Firebase, pour l'admin, ajoutez une custom claim `admin: true` aux utilis
 Palette moderne et claire, menu fixe en haut avec logo.
 
 ---
-- Mettre dans les configurations la taille max d'un fichier et le nombre max de fichiers
-- Permettre de configurer les extensions de fichier autorisées
-- Faire que pour la taille max, le nombre de fichiers et les extensions autorisées, on ait un endpoint qui donne les infos pour éviter à doubler les configurations
-- Ajouter dans le backend un cron qui tourne toutes les heures pour supprimer les images qui ne sont pas stockées en BD
-- Ajouter un endpoint pour gérer la suppression d'une image
-- 
 - Permettre à l'utilisateur ayant ouvert l'idée de retirer des images ou de les retirer lors de la création de l'idée (et de la supprimer côté serveur)
 - Lors de la création d'une idée, ne pas avoir la liste des urls affichées pour les images, mais les images en miniature
 - Test sur docker pour vérifier le changement de langue
 - Tester l'ouverture/fermeture d'une idée
 - Tester le chargement de plusieurs pages
+- Implémenter récupération des configurations du backend

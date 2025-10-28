@@ -15,8 +15,8 @@
     <div class="grid" style="gap:8px;">
       <label class="meta">{{ $t('idea.images_label') }}</label>
       <input type="file" multiple accept="image/png,image/jpeg" @change="onFilesSelected" v-if="images.length < 5" />
-      <div v-if="images.length" class="row wrap" style="gap:8px;">
-        <span v-for="(url, idx) in images" :key="idx" class="chip">{{ url }}</span>
+      <div style="display:flex; flex-wrap:wrap; gap:8px;" v-if="images.length > 0">
+      <ImageCard v-for="(url, idx) in images" :image="url" :index="idx" :is-creation-form="true" :on-delete="onImageDeleted"></ImageCard>
       </div>
     </div>
 
@@ -31,6 +31,7 @@
 <script setup lang="ts">
 import type { CreateIdeaRequest } from '~/lib/models'
 import { IdeasApi, ImagesApi } from '~/lib/api'
+import ImageCard from "~/components/idea/ImageCard.vue";
 const { t } = useI18n()
 
 const emit = defineEmits<{ (e:'created'): void; (e:'cancel'): void }>()
@@ -61,6 +62,10 @@ async function onFilesSelected(e: Event) {
   }
   // reset input value to allow re-selecting the same files
   input.value = ''
+}
+
+function onImageDeleted() {
+  images.value = images.value.filter(i => !images.value.includes(i))
 }
 
 const onSubmit = async () => {
