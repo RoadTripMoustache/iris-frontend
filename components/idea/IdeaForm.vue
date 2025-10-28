@@ -13,8 +13,8 @@
     </div>
 
     <div class="grid" style="gap:8px;">
-      <label class="meta">{{ $t('idea.images_label') }}</label>
-      <input type="file" multiple accept="image/png,image/jpeg" @change="onFilesSelected" v-if="images.length < 5" />
+      <label class="meta">{{ $t('idea.images_label') + buildLabel()}}</label>
+      <input type="file" multiple :accept="acceptedExtensions()" @change="onFilesSelected" v-if="images.length < (configs?.max_images_per_idea || 5)" />
       <div style="display:flex; flex-wrap:wrap; gap:8px;" v-if="images.length > 0">
       <ImageCard v-for="(url, idx) in images" :image="url" :index="idx" :is-creation-form="true" :on-delete="onImageDeleted"></ImageCard>
       </div>
@@ -32,7 +32,33 @@
 import type { CreateIdeaRequest } from '~/lib/models'
 import { IdeasApi, ImagesApi } from '~/lib/api'
 import ImageCard from "~/components/idea/ImageCard.vue";
+import {useConfigs} from "~/composables/useConfigs";
 const { t } = useI18n()
+const {configs} = useConfigs()
+
+function acceptedExtensions() {
+  return configs?.value?.accepted_extensions.join(', ') || 'png, jpeg'
+}
+
+function buildLabel() {
+  let extensions = acceptedExtensions()
+  let maxBytes = formatBytes(configs?.value?.max_size || 2 * 1024 * 1024)
+
+  return " ("+extensions+", > "+ maxBytes +")"
+}
+
+function formatBytes(bytes: number) {
+  if (bytes === 0) return "0 octet";
+
+  const units = ["octets", "Ko", "Mo", "Go", "To"];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  const value = bytes / Math.pow(1024, i);
+
+  // Arrondir à 2 décimales maximum
+  const formatted = value.toFixed(2).replace(/\.00$/, "");
+
+  return `${formatted} ${units[i]}`;
+}
 
 const emit = defineEmits<{ (e:'created'): void; (e:'cancel'): void }>()
 const title = ref('')

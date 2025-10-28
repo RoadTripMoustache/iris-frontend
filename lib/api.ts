@@ -1,4 +1,4 @@
-import type {Idea, CreateIdeaRequest, AddCommentRequest, SetIdeaOpenRequest, GetIdeasResponse} from './models'
+import type {Idea, CreateIdeaRequest, AddCommentRequest, SetIdeaOpenRequest, GetIdeasResponse, Configs} from './models'
 import {useAuth} from '~/composables/useAuth'
 
 async function getAuthHeader(): Promise<Record<string, string>> {
@@ -27,6 +27,12 @@ async function http<T>(path: string, init?: RequestInit): Promise<T> {
         throw new Error(text || res.statusText)
     }
     return await res.json() as T
+}
+
+export const ConfigsApi = {
+    get: async (): Promise<Configs> => {
+        return http<Configs>('/v1/configs', {method: 'GET'})
+    },
 }
 
 export const ImagesApi = {

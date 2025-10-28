@@ -53,3 +53,10 @@ export interface EnhancedError {
   error_http_code?: number
   details?: any
 }
+
+export interface Configs {
+    max_images_per_idea: number
+    max_images_per_comment: number
+    max_size: number
+    accepted_extensions: string[]
+}

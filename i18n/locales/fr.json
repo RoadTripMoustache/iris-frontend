@@ -21,7 +21,7 @@
     "title": "Titre",
     "description": "Description",
     "category": "Catégorie",
-    "images_label": "Images (.jpg, .png, < 2Mo)",
+    "images_label": "Images",
     "cancel": "Annuler",
     "create": "Créer",
     "error_type": "Format d'image non supporté.",
