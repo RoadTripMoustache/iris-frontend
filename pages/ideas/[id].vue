@@ -7,6 +7,9 @@
           <button class="button" @click="toggleOpen">{{ idea?.is_open ? $t('idea.close') : $t('idea.open_action') }}</button>
         </div>
       </div>
+      <div class="row">
+        {{idea.description}}
+      </div>
     </IdeaCard>
 
     <div class="card" v-if="idea && idea.images && idea.images.length">
@@ -18,7 +21,7 @@
     </div>
 
     <div class="card" v-if="idea">
-      <h3>{{ $t('idea.comments_heading') }}</h3>
+      <h3 style="margin-top: 0px;">{{ $t('idea.comments_heading') }}</h3>
       <div v-if="!idea.comments.length" class="empty">{{ $t('idea.no_comments') }}</div>
       <div v-else>
         <CommentItem v-for="c in idea.comments" :key="c.id" :comment="c" :canEdit="canEdit(c.user_id)" @update="onEditComment" @delete="onDeleteComment" />

@@ -25,6 +25,7 @@ export interface Idea {
   id: string
   created_at: string
   title: string
+  description: string
   tag: IdeaTag
   creator_id: string
   votes_count: number
