@@ -1,5 +1,4 @@
 <template>
-    <script src="/runtime-env.js"></script>
     <AppNavbar v-if="isLoginPage"/>
     <div class="container">
       <NuxtPage/>
@@ -14,7 +13,7 @@ import { useRoute } from 'vue-router'; // For Nuxt 3
 let isLoginPage = ref(false);
 const route = useRoute();
 
-isLoginPage.value = !(route.name as string).startsWith("login_");
+isLoginPage.value = !(route.name as string || "").startsWith("login_");
 
 watch(
     () => route.path,

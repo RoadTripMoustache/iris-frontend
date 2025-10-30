@@ -23,7 +23,6 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL,
-            defaultLocale: process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'fr',
             appTitle: process.env.NUXT_PUBLIC_TITLE || 'Iris',
             appLoginTitle: process.env.NUXT_PUBLIC_LOGIN_TITLE,
             appIcon: process.env.NUXT_PUBLIC_ICON || '/logo.png',
@@ -43,6 +42,6 @@ export default defineNuxtConfig({
             { code: 'fr', name: 'Français', file: 'fr.json' },
             { code: 'en', name: 'English', file: 'en.json' }
         ],
-        defaultLocale: process.env.NUXT_PUBLIC_DEFAULT_LOCALE || 'fr'
+        defaultLocale: 'en'
     }
 })

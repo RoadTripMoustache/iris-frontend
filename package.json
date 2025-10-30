@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/i18n": "^9.0.0-rc.0",
+    "@nuxtjs/i18n": "^9.5.4",
     "dayjs": "^1.11.13",
     "firebase": "^10.14.1",
     "firebase-admin": "^11.10.1",
