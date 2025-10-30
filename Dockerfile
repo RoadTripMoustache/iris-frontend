@@ -1,4 +1,4 @@
-FROM node:18-alpine AS build
+FROM node:24.11.0-alpine AS build
 
 WORKDIR /app
 
@@ -10,7 +10,8 @@ COPY ./assets ./assets
 COPY ./components ./components
 COPY ./composables ./composables
 COPY ./i18n ./i18n
-COPY ./layouts ./layouts
+COPY ./lib ./lib
+COPY ./middleware ./middleware
 COPY ./pages ./pages
 COPY ./plugins ./plugins
 COPY ./public ./public
@@ -18,7 +19,6 @@ COPY ./server ./server
 COPY ./app.vue ./app.vue
 COPY ./content.config.ts ./content.config.ts
 COPY ./error.vue ./error.vue
-COPY ./eslint.config.mjs ./eslint.config.mjs
 COPY ./nuxt.config.ts ./nuxt.config.ts
 COPY ./package.json ./package.json
 COPY ./tsconfig.json ./tsconfig.json

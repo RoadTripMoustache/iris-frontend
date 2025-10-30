@@ -1,4 +1,5 @@
 <template>
+    <script src="/runtime-env.js"></script>
     <AppNavbar v-if="isLoginPage"/>
     <div class="container">
       <NuxtPage/>
