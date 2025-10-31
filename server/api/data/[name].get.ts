@@ -2,9 +2,7 @@ import { readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 
 export default defineEventHandler((event) => {
-    console.log("GET FILE /api/data/[name]")
     const name = event.context.params?.name || ""
-    console.log("name", name)
     if (name == "") {
         return "";
     }
