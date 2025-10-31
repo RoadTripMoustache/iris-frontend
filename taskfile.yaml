@@ -9,19 +9,6 @@ tasks:
 
   start:
     desc: Start the development server on `http://localhost:3000`
-    env:
-      CORS_ORIGIN: http://localhost:3000
-      NUXT_PUBLIC_API_BASE_URL: http://localhost:8081
-      ENVIRONMENT: local
-      NUXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyD9CsBq3_NHrDgIoD_3ZXno3p5mbfcB_w0"
-      NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "guide-nestor-dev-40f8e.firebaseapp.com"
-      NUXT_PUBLIC_FIREBASE_PROJECT_ID: "guide-nestor-dev-40f8e"
-      NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET: "guide-nestor-dev-40f8e.firebasestorage.app"
-      NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "44089008503"
-      NUXT_PUBLIC_FIREBASE_APP_ID: "1:44089008503:web:cc221d57fc67d5d18bc172"
-      #NUXT_PUBLIC_TITLE: Guide Nestor
-      #NUXT_PUBLIC_ICON: https://guidenestor.com/assets/images/nestor_logo_200.png
-      #NUXT_PUBLIC_LOGIN_TITLE: Centre
     cmds:
       - npm run dev
 
@@ -40,14 +27,6 @@ tasks:
     cmds:
       - task: build
       - npm run preview
-
-  docker_build:
-    cmds:
-      - docker build -t grotube:1 .
-
-  docker_run:
-    cmds:
-      - docker run -p 3000:3000 -e NUXT_CORS_ORIGIN=http://localhost:3000 -e NUXT_API_URL=http://localhost:8089 --network=host grotube:1
 
   up:
     dir: _local
