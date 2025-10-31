@@ -4,7 +4,7 @@
       <div style="text-align:center;">
       <img :src="icon" :alt="title" />
       <h1>{{ title }}</h1>
-      <h3>{{ config.public.appLoginTitle || $t('login.support_title') }}</h3>
+      <h3>{{ loginTitle || $t('login.support_title') }}</h3>
       </div>
       <form @submit.prevent="onSubmit" class="grid" style="gap:12px;">
         <input class="input" v-model="email" type="email" :placeholder="$t('login.email')" required />
@@ -29,9 +29,10 @@
 }
 </style>
 <script setup lang="ts">
-const config = useRuntimeConfig()
-const title = config.public.appTitle
-const icon = config.public.appIcon
+const runtime = useAppRuntime()
+const title = runtime.value.appTitle
+const icon = runtime.value.appIcon
+const loginTitle = runtime.value.appLoginTitle
 import GoogleLogo from "~/components/logos/GoogleLogo.vue";
 
 const { t } = useI18n()

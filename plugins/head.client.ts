@@ -1,7 +1,7 @@
 export default defineNuxtPlugin(() => {
-  const config = useRuntimeConfig()
-  const appTitle = config.public.appTitle || 'Iris'
-  const appIcon = config.public.appIcon || '/logo.png'
+  const runtime = useAppRuntime()
+  const appTitle = runtime.value.appTitle || 'Iris'
+  const appIcon = runtime.value.appIcon || '/logo.png'
 
   useHead({
     titleTemplate: (titleChunk?: string) => {

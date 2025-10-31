@@ -94,8 +94,8 @@ export function useAuth() {
                 isAdmin.value = false
                 return
             }
-            const config = useRuntimeConfig()
-            const base = config.public.apiBaseUrl?.replace(/\/$/, '') || ''
+            const { getApiBaseUrl } = await import('~/composables/useAppRuntime')
+            const base = getApiBaseUrl()
             const res = await fetch(`${base}/v1/admin/me`, {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }

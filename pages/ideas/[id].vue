@@ -41,8 +41,7 @@ import type { Idea } from '~/lib/models'
 import { IdeasApi } from '~/lib/api'
 
 function baseUrl() {
-  const config = useRuntimeConfig()
-  return config.public.apiBaseUrl?.replace(/\/$/, '') || ''
+  return getApiBaseUrl()
 }
 
 const { user, isAdmin } = useAuth()

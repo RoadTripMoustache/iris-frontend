@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     },
     plugins: [
         '~/plugins/vuefire.client.ts',
+        '~/plugins/runtime-config.client.ts',
         '~/plugins/configs.client.ts',
         '~/plugins/head.client.ts',
     ],

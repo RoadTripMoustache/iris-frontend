@@ -20,9 +20,9 @@
 import {useAuth} from "~~/composables/useAuth";
 import LanguageSelector from "~/components/menu/LanguageSelector.vue";
 
-const config = useRuntimeConfig()
-const title = config.public.appTitle
-const icon = config.public.appIcon
+const runtime = useAppRuntime()
+const title = runtime.value.appTitle
+const icon = runtime.value.appIcon
 const { t } = useI18n();
 
 const goTo = (path) => {

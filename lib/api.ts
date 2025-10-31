@@ -1,5 +1,6 @@
 import type {Idea, CreateIdeaRequest, AddCommentRequest, SetIdeaOpenRequest, GetIdeasResponse, Configs} from './models'
 import {useAuth} from '~/composables/useAuth'
+import { getApiBaseUrl } from '~/composables/useAppRuntime'
 
 async function getAuthHeader(): Promise<Record<string, string>> {
     const {getIdToken} = useAuth()
@@ -11,8 +12,7 @@ async function getAuthHeader(): Promise<Record<string, string>> {
 }
 
 function baseUrl() {
-    const config = useRuntimeConfig()
-    return config.public.apiBaseUrl?.replace(/\/$/, '') || ''
+    return getApiBaseUrl()
 }
 
 async function http<T>(path: string, init?: RequestInit): Promise<T> {

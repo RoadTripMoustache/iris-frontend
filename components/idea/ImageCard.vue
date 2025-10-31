@@ -53,8 +53,7 @@ const props = defineProps<{
 }>()
 
 function baseUrl() {
-  const config = useRuntimeConfig()
-  return config.public.apiBaseUrl?.replace(/\/$/, '') || ''
+  return getApiBaseUrl()
 }
 
 function deleteImage(image: string) {
