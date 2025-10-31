@@ -8,9 +8,9 @@
     </div>
     <div class="idea-content">
       <div class="row" style="justify-content: space-between;">
-        <NuxtLink :to="`/ideas/${idea.id}`" style="font-weight:600; text-decoration:none; color:inherit;">
+        <a @click="goTo(`/ideas/${idea.id}`)" style="font-weight:600; text-decoration:none; color:inherit;">
           {{ idea.title }}
-        </NuxtLink>
+        </a>
         <span :class="'badge '+ idea.tag ">{{ $t('tags.'+ idea.tag) }}</span>
       </div>
       <div class="meta">{{ $t('idea.created_on') }} {{ formatDate(idea.created_at) }} • {{ idea.is_open ? $t('idea.open') : $t('idea.closed') }}</div>
@@ -35,6 +35,11 @@ import { IdeasApi } from '~/lib/api'
 
 const props = defineProps<{ idea: Idea }>()
 const emit = defineEmits<{ (e:'update', value: Idea): void }>()
+
+const goTo = (path) => {
+  const localePath = useLocalePath()
+  navigateTo(localePath(path));
+};
 
 function formatDate(s: string) {
   return dayjs(s).format('DD/MM/YYYY')

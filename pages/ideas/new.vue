@@ -7,7 +7,12 @@
 const { t } = useI18n()
 
 useHead({ title: t('idea.new_title') as string })
-const router = useRouter()
-function goHome() { router.push('/') }
-function onCreated() { router.push('/') }
+function goHome() { goTo('/') }
+function onCreated() { goTo('/') }
+
+
+const goTo = (path) => {
+  const localePath = useLocalePath()
+  navigateTo(localePath(path));
+};
 </script>

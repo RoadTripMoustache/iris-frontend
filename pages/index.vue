@@ -3,7 +3,7 @@
     <div class="row" style="gap:12px; align-items:center;">
       <SearchBar style="flex:1" v-model="search" :placeholder="$t('home.search_placeholder')" />
       <SortSelect v-model="sortBy" />
-      <NuxtLink class="button primary" to="/ideas/new">{{ $t('home.new_idea') }}</NuxtLink>
+      <button class="button primary" @click="goTo('/ideas/new')">{{ $t('home.new_idea') }}</button>
     </div>
 
     <InfiniteScroller :loadMore="loadMore" :loading="loading" :done="done">
@@ -30,6 +30,11 @@ const loading = ref(false)
 const done = ref(false)
 const search = ref('')
 const sortBy = ref<'created_at'|'votes_count'>('created_at')
+
+const goTo = (path) => {
+  const localePath = useLocalePath()
+  navigateTo(localePath(path));
+};
 
 const filteredSortedIdeas = computed(() => {
   const q = search.value.trim().toLowerCase()
