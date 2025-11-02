@@ -1,112 +1,61 @@
-# Nuxt Minimal Starter
+# Iris Frontend
+
+![Iris logo](./docs/logo.png)
+
+![Docker Image Version](https://img.shields.io/docker/v/roadtripmoustache/iris-front?sort=semver)
+[![GitHub stars](https://img.shields.io/github/stars/RoadTripMoustache/iris-front?style=social)](https://github.com/RoadTripMoustache/iris-front/stargazers)
+
+**Iris Front** provides a VueJs/Nuxt interface to create, retrieve, and manage ideas, votes, and comments from users.
+It powers the feedback system of Iris, enabling efficient collection of bug reports and feature requests directly from your user base.
+
+---
+
+This repository contains the VueJs code for the Iris Front application.
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
-
-# Iris Front
-
-Application Nuxt pour gérer des idées avec authentification Firebase (email/mot de passe et Google).
-
 ## Configuration
 
-Définissez les variables d'environnement (par exemple via un fichier .env.local) :
+Two json configurations files are required:
+- `config.json`
+- `firebase-config.json`
 
-- NUXT_PUBLIC_API_BASE_URL (ex: http://localhost:8080)
-- NUXT_PUBLIC_FIREBASE_API_KEY
-- NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-- NUXT_PUBLIC_FIREBASE_PROJECT_ID
-- NUXT_PUBLIC_FIREBASE_APP_ID
-- NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-- NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+### config.json
+```json
+{
+  "apiBaseUrl": "Mandatory - Base url of the Iris API",
+  "appTitle": "Optional - App title to display instead of the default one",
+  "appLoginTitle": "Optional - Login title to display instead of the default one",
+  "appIcon": "Optional - App icon to display instead of the default one"
+}
+```
 
-Côté Firebase, pour l'admin, ajoutez une custom claim `admin: true` aux utilisateurs administrateurs.
-
-## Démarrage
-
-- `npm install`
-- `npm run dev` (appli sur http://localhost:3002)
-
-## Fonctionnalités
-
-- Connexion par email/mot de passe et Google
-- Liste des idées avec recherche, tri (date ou votes), et chargement infini
-- Vote/Retrait de vote
-- Détail d'une idée, commentaires (ajout/modification/suppression)
-- Création d'idée
-- Admin: ouvrir/fermer une idée
-
-Palette moderne et claire, menu fixe en haut avec logo.
+### firebase-config.json
+```json
+{
+  "apiKey": "Mandatory - Firebase API key",
+  "authDomain": "Mandatory - Firebase Auth domain",
+  "databaseURL": "Mandatory - Firebase database URL",
+  "projectId": "Mandatory - Firebase project ID",
+  "storageBucket": "Mandatory - Firebase storage bucket",
+  "messagingSenderId": "Mandatory - Firebase messaging sender ID",
+  "appId": "Mandatory - Firebase app ID"
+}
+```
 
 ---
-- Test sur docker pour vérifier le changement de langue
+
+## Start locally
+
+To start the application locally, run the application with docker.
+
+```cmd
+docker run -d \
+  --name iris_front \
+  --restart always \
+  -p 9105:3000 \
+  -v "$(pwd)/firebase-config.json:/app/server/files/firebase-config.json:ro" \
+  -v "$(pwd)/config.json:/app/server/files/config.json:ro" \
+  --label name=iris_front \
+  roadtripmoustache/iris-front:latest
+```
