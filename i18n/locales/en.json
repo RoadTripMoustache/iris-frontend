@@ -1,0 +1,80 @@
+{
+  "app": {
+    "name": "Iris"
+  },
+  "nav": {
+    "login": "Sign in",
+    "logout": "Sign out",
+    "logout_confirm": "Are you sure you want to sign out?"
+  },
+  "home": {
+    "title": "Home",
+    "search_placeholder": "Search an idea...",
+    "new_idea": "New idea",
+    "empty": "No ideas",
+    "sort_date": "By date",
+    "sort_votes": "By votes"
+  },
+  "idea": {
+    "new_title": "New idea",
+    "new_heading": "New idea",
+    "title": "Title",
+    "description": "Description",
+    "category": "Category",
+    "images_label": "Images",
+    "cancel": "Cancel",
+    "create": "Create",
+    "error_type": "Unsupported image format.",
+    "error_size": "Image too large (> 2MB).",
+    "error_upload": "Image upload failed.",
+    "error_required": "Title and description are required.",
+    "error_create": "Error while creating the idea.",
+    "vote": "Vote",
+    "unvote": "Remove",
+    "created_on": "Created on",
+    "open": "Open",
+    "closed": "Closed",
+    "voters": "voter | voters",
+    "comments": "comment | comments",
+    "close": "Close",
+    "open_action": "Open",
+    "comments_heading": "Comments",
+    "no_comments": "No comments yet",
+    "add_comment_placeholder": "Add a comment...",
+    "publish": "Publish"
+  },
+  "login": {
+    "title": "Sign in",
+    "heading": "Sign in",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "continue_google": "Continue with Google",
+    "error_login": "Login error",
+    "error_google": "Google error",
+    "support_title": "Support and idea center"
+  },
+  "comment": {
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "save": "Save"
+  },
+  "tags": {
+    "bug": "bug",
+    "enhancement": "enhancement"
+  },
+  "lang": {
+    "label": "Language",
+    "fr": "French",
+    "en": "English"
+  },
+  "error": {
+    "RES000": "Image not found",
+    "IMG000": "Image too big",
+    "IMG001": "Extension not allowed",
+    "IMG002": "Empty image name",
+    "IMG003": "Too many images",
+    "SER000": "Internal server error"
+  }
+}

@@ -1,0 +1,34 @@
+version: '3'
+
+tasks:
+
+  install:
+    desc: Install dependencies
+    cmds:
+      - npm install
+
+  start:
+    desc: Start the development server on `http://localhost:3000`
+    cmds:
+      - npm run dev
+
+  build:
+    desc: Build the app for production
+    cmds:
+      #- npm run build
+      - task: docker_build
+
+  preview:
+    desc: Locally preview production build
+    env:
+      CORS_ORIGIN: http://localhost:3000
+      API_URL: http://localhost:8080
+      ENVIRONMENT: local
+    cmds:
+      - task: build
+      - npm run preview
+
+  up:
+    dir: _local
+    cmds:
+      - docker-compose up -d
