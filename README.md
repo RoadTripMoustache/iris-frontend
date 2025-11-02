@@ -3,7 +3,7 @@
 ![Iris logo](./docs/logo.png)
 
 ![Docker Image Version](https://img.shields.io/docker/v/roadtripmoustache/iris-front?sort=semver)
-[![GitHub stars](https://img.shields.io/github/stars/RoadTripMoustache/iris-front?style=social)](https://github.com/RoadTripMoustache/iris-front/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/RoadTripMoustache/iris-frontend?style=social)](https://github.com/RoadTripMoustache/iris-frontend/stargazers)
 
 **Iris Front** provides a VueJs/Nuxt interface to create, retrieve, and manage ideas, votes, and comments from users.
 It powers the feedback system of Iris, enabling efficient collection of bug reports and feature requests directly from your user base.
