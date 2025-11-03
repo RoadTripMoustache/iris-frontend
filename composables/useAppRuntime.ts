@@ -9,7 +9,13 @@ export type PublicRuntime = {
 
 // Shared state to hold runtime-loaded public config
 export function useAppRuntime(): Ref<PublicRuntime> {
-  const state = useState<PublicRuntime>('app:publicRuntime', () => ({}))
+  const state = useState<PublicRuntime>('app:publicRuntime', () => ({}));
+  if (!state.value.appTitle) {
+      state.value.appTitle = "Iris"
+  }
+  if (!state.value.appIcon) {
+      state.value.appIcon = "/logo.png"
+  }
   return state
 }
 

@@ -23,6 +23,9 @@ import LanguageSelector from "~/components/menu/LanguageSelector.vue";
 const runtime = useAppRuntime()
 const title = runtime.value.appTitle
 const icon = runtime.value.appIcon
+console.log(runtime.value)
+console.log(title)
+console.log(icon)
 const { t } = useI18n();
 
 const goTo = (path) => {
