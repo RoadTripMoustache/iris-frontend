@@ -5,6 +5,7 @@
 .nitro
 .cache
 dist
+server/files
 
 # Node dependencies
 node_modules
@@ -23,3 +24,4 @@ _local
 .env
 .env.*
 !.env.example
+

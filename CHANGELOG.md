@@ -1,6 +1,8 @@
 # CHANGELOG
 
 ## Unreleased
+### Fixed
+- fix: CSS style on idea card
 
 
 ## 1.0.1 [2025/11/03]

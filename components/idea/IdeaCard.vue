@@ -8,7 +8,7 @@
     </div>
     <div class="idea-content">
       <div class="row" style="justify-content: space-between;">
-        <a @click="goTo(`/ideas/${idea.id}`)" style="font-weight:600; text-decoration:none; color:inherit;">
+        <a @click="goTo(`/ideas/${idea.id}`)" style="font-weight:600; text-decoration:none; color:inherit; cursor: pointer;">
           {{ idea.title }}
         </a>
         <span :class="'badge '+ idea.tag ">{{ $t('tags.'+ idea.tag) }}</span>
