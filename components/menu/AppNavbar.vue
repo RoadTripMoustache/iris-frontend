@@ -6,9 +6,9 @@
         <span>{{ title }}</span>
       </div>
       <div class="row" style="gap:8px; align-items:center;">
-        <button v-if="!user" class="button" @click="goLogin">{{ $t('nav.login') }}</button>
-        <div v-else class="row" style="gap:8px">
+        <div class="row" style="gap:8px" v-if="user">
           <span class="meta">{{ user.email }}</span>
+          <button v-if="isAdmin" class="button" @click="goAdmin">{{ $t('nav.admins') }}</button>
           <LanguageSelector />
           <button class="button" @click="logout">{{ $t('nav.logout') }}</button>
         </div>
@@ -23,10 +23,8 @@ import LanguageSelector from "~/components/menu/LanguageSelector.vue";
 const runtime = useAppRuntime()
 const title = runtime.value.appTitle
 const icon = runtime.value.appIcon
-console.log(runtime.value)
-console.log(title)
-console.log(icon)
 const { t } = useI18n();
+const { isAdmin } = useAuth()
 
 const goTo = (path) => {
   const localePath = useLocalePath()
@@ -35,7 +33,7 @@ const goTo = (path) => {
 
 const { user, signOut } = useAuth()
 
-const goLogin = () => goTo('/login')
+const goAdmin = () => goTo('/admins')
 const logout = async () => {
   const userConfirmed: boolean = window.confirm(t("nav.logout_confirm"));
 

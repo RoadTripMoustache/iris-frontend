@@ -88,3 +88,15 @@ export const IdeasApi = {
         })
     }
 }
+
+export const AdminsApi = {
+    list: async (): Promise<any[]> => {
+        return http<any[]>('/v1/admin', { method: 'GET' })
+    },
+    add: async (payload: { uid?: string; user_email?: string }): Promise<any> => {
+        return http<any>('/v1/admin', { method: 'POST', body: JSON.stringify(payload) })
+    },
+    remove: async (payload: { uid?: string; user_email?: string }): Promise<any> => {
+        return http<any>('/v1/admin', { method: 'DELETE', body: JSON.stringify(payload) })
+    }
+}
