@@ -30,7 +30,7 @@
       <form class="grid" style="gap:8px;" @submit.prevent="onAddComment">
         <textarea class="input" v-model="newComment" :placeholder="$t('idea.add_comment_placeholder')" rows="3"></textarea>
 
-        <ImageSelection :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
+        <ImageSelection :is-idea="false" :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
 
         <p v-if="error" class="error">{{ error }}</p>
         <div class="row" style="justify-content: flex-end;">

@@ -16,7 +16,7 @@
     <div v-else class="grid" style="gap:8px;">
       <textarea class="input" v-model="draft" rows="3"></textarea>
 
-      <ImageSelection :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
+      <ImageSelection :is-idea="false" :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
 
       <p v-if="error" class="error">{{ error }}</p>
       <div>

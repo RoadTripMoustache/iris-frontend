@@ -3,6 +3,7 @@
 ## Unreleased
 ### Added
 - feat: Manage images on comments
+- feat: Manage image form display
 
 ### Fixed
 - fix: CSS style on idea card

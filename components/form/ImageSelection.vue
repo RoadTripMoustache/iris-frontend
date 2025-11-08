@@ -6,6 +6,7 @@ const props = defineProps<{
   images: string[];
   updateImages: Function;
   updateError: Function;
+  isIdea: boolean;
 }>()
 
 import ImageCard from "~/components/idea/ImageCard.vue";
@@ -66,12 +67,16 @@ async function onFilesSelected(e: Event) {
 function onImageDeleted(url: string) {
   props.updateImages(props.images.filter(i => i.trim() !== url.trim()))
 }
+function isImageListFull() {
+  const maxImages = props.isIdea ? configs?.value?.max_images_per_idea : configs?.value?.max_images_per_comment || 5
+  return props.images.length >= (maxImages || 0)
+}
 </script>
 
 <template>
-  <div class="grid" style="gap:8px;">
+  <div class="grid" style="gap:8px;" v-if="isImageListFull()">
     <label class="meta">{{ $t('idea.images_label') + buildLabel()}}</label>
-    <input type="file" multiple :accept="acceptedExtensions()" @change="onFilesSelected" v-if="images.length < (configs?.max_images_per_idea || 5)" />
+    <input type="file" multiple :accept="acceptedExtensions()" @change="onFilesSelected" v-if="isImageListFull()" />
     <div style="display:flex; flex-wrap:wrap; gap:8px;">
       <ImageCard v-for="(url, idx) in images" :image="url" :index="idx" :is-creation-form="true" :on-delete="onImageDeleted"></ImageCard>
     </div>

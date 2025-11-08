@@ -12,7 +12,7 @@
       </select>
     </div>
 
-    <ImageSelection :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
+    <ImageSelection :is-idea="true" :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
 
     <p v-if="error" class="error">{{ error }}</p>
 
