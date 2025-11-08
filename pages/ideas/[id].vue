@@ -29,6 +29,10 @@
       <hr class="sep" />
       <form class="grid" style="gap:8px;" @submit.prevent="onAddComment">
         <textarea class="input" v-model="newComment" :placeholder="$t('idea.add_comment_placeholder')" rows="3"></textarea>
+
+        <ImageSelection :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
+
+        <p v-if="error" class="error">{{ error }}</p>
         <div class="row" style="justify-content: flex-end;">
           <button class="button primary" :disabled="!newComment.trim()">{{ $t('idea.publish') }}</button>
         </div>
@@ -39,6 +43,7 @@
 <script setup lang="ts">
 import type { Idea } from '~/lib/models'
 import { IdeasApi } from '~/lib/api'
+import ImageSelection from "~/components/form/ImageSelection.vue";
 
 function baseUrl() {
   return getApiBaseUrl()
@@ -49,6 +54,8 @@ const route = useRoute()
 
 const idea = ref<Idea | null>(null)
 const newComment = ref('')
+const images = ref<string[]>([])
+const error = ref<string>('')
 
 function updateTitle(ideaName: string) {
   useHead({ title: ideaName })
@@ -65,15 +72,17 @@ function canEdit(userId: string) {
 
 async function onAddComment() {
   if (!idea.value) return
-  const updated = await IdeasApi.addComment(idea.value.id, { message: newComment.value })
+  const updated = await IdeasApi.addComment(idea.value.id, { message: newComment.value, images: images.value })
   idea.value = updated
   newComment.value = ''
+  images.value = []
 }
 
-async function onEditComment(id: string, message: string) {
+async function onEditComment(id: string, message: string, imageList: string[]) {
   if (!idea.value) return
-  const updated = await IdeasApi.editComment(idea.value.id, id, { message })
+  const updated = await IdeasApi.editComment(idea.value.id, id, { message, images: imageList })
   idea.value = updated
+  images.value = []
 }
 
 async function onDeleteComment(id: string) {
@@ -86,6 +95,14 @@ async function toggleOpen() {
   if (!idea.value) return
   const updated = await IdeasApi.setOpen(idea.value.id, !idea.value.is_open)
   idea.value = updated
+}
+
+function onUpdateError(newError: string) {
+  error.value = newError;
+}
+
+function onImagesUpdate(newImageList: string []) {
+  images.value = newImageList;
 }
 
 onMounted(fetchIdea)

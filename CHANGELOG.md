@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## Unreleased
+### Added
+- feat: Manage images on comments
+
 ### Fixed
 - fix: CSS style on idea card
 

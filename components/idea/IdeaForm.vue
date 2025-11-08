@@ -12,13 +12,7 @@
       </select>
     </div>
 
-    <div class="grid" style="gap:8px;">
-      <label class="meta">{{ $t('idea.images_label') + buildLabel()}}</label>
-      <input type="file" multiple :accept="acceptedExtensions()" @change="onFilesSelected" v-if="images.length < (configs?.max_images_per_idea || 5)" />
-      <div style="display:flex; flex-wrap:wrap; gap:8px;" v-if="images.length > 0">
-      <ImageCard v-for="(url, idx) in images" :image="url" :index="idx" :is-creation-form="true" :on-delete="onImageDeleted"></ImageCard>
-      </div>
-    </div>
+    <ImageSelection :images="images" :update-images="onImagesUpdate" :update-error="onUpdateError"/>
 
     <p v-if="error" class="error">{{ error }}</p>
 
@@ -30,35 +24,9 @@
 </template>
 <script setup lang="ts">
 import type { CreateIdeaRequest } from '~/lib/models'
-import { IdeasApi, ImagesApi } from '~/lib/api'
-import ImageCard from "~/components/idea/ImageCard.vue";
-import {useConfigs} from "~/composables/useConfigs";
+import { IdeasApi } from '~/lib/api'
+import ImageSelection from "~/components/form/ImageSelection.vue";
 const { t } = useI18n()
-const {configs} = useConfigs()
-
-function acceptedExtensions() {
-  return configs?.value?.accepted_extensions.join(', ') || 'png, jpeg'
-}
-
-function buildLabel() {
-  let extensions = acceptedExtensions()
-  let maxBytes = formatBytes(configs?.value?.max_size || 2 * 1024 * 1024)
-
-  return " ("+extensions+", > "+ maxBytes +")"
-}
-
-function formatBytes(bytes: number) {
-  if (bytes === 0) return "0 octet";
-
-  const units = ["octets", "Ko", "Mo", "Go", "To"];
-  const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  const value = bytes / Math.pow(1024, i);
-
-  // Arrondir à 2 décimales maximum
-  const formatted = value.toFixed(2).replace(/\.00$/, "");
-
-  return `${formatted} ${units[i]}`;
-}
 
 const emit = defineEmits<{ (e:'created'): void; (e:'cancel'): void }>()
 const title = ref('')
@@ -67,32 +35,6 @@ const tag = ref<'bug'|'enhancement'>('enhancement')
 const images = ref<string[]>([])
 const submitting = ref(false)
 const error = ref<string>('')
-
-async function onFilesSelected(e: Event) {
-  const input = e.target as HTMLInputElement
-  const files = input.files
-  if (!files) return
-  error.value = ''
-  for (const file of Array.from(files)) {
-    const validType = ['image/jpeg','image/png'].includes(file.type)
-    const validSize = file.size <= 2 * 1024 * 1024
-    if (!validType) { error.value = t('idea.error_type'); continue }
-    if (!validSize) { error.value = t('idea.error_size'); continue }
-    try {
-      const { url } = await ImagesApi.upload(file)
-      images.value.push(url)
-    } catch (e:any) {
-      let errorReponse = JSON.parse(e?.message || '')
-      error.value = t("error."+errorReponse["error_code"]) || (t('idea.error_upload') as string)
-    }
-  }
-  // reset input value to allow re-selecting the same files
-  input.value = ''
-}
-
-function onImageDeleted(url: string) {
-  images.value = images.value.filter(i => i.trim() !== url.trim())
-}
 
 const onSubmit = async () => {
   error.value = ''
@@ -118,8 +60,15 @@ const onSubmit = async () => {
     submitting.value = false
   }
 }
+
+function onUpdateError(newError: string) {
+  error.value = newError;
+}
+
+function onImagesUpdate(newImageList: string []) {
+  images.value = newImageList;
+}
 </script>
 <style scoped>
 .error { color: #b00020; }
-.chip { background:#eee; padding:2px 6px; border-radius:6px; font-size:12px; }
 </style>
