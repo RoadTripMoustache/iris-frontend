@@ -6,7 +6,7 @@
         <span>{{ title }}</span>
       </div>
       <div class="row" style="gap:8px; align-items:center;">
-        <div class="row" style="gap:8px">
+        <div class="row" style="gap:8px" v-if="user">
           <span class="meta">{{ user.email }}</span>
           <button v-if="isAdmin" class="button" @click="goAdmin">{{ $t('nav.admins') }}</button>
           <LanguageSelector />
