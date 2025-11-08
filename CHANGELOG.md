@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## Unreleased
+
+
+## 1.1.0 [2025/11/08]
 ### Added
 - feat: Manage images on comments
 - feat: Manage image form display
