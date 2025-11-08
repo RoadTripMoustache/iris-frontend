@@ -76,5 +76,17 @@
     "IMG002": "Empty image name",
     "IMG003": "Too many images",
     "SER000": "Internal server error"
+  },
+  "admins": {
+    "title": "Administrators management",
+    "loading": "Loading...",
+    "list_title": "Administrators",
+    "empty": "No administrators",
+    "remove": "Remove",
+    "add_title": "Add an administrator",
+    "email_label": "Email",
+    "add": "Add",
+    "adding": "Adding...",
+    "confirm_deletion": "Are you sure you want to remove this admin?"
   }
 }

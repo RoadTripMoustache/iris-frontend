@@ -76,5 +76,17 @@
     "IMG002": "Nom d'image vide",
     "IMG003": "Le nombre d'images dépasse le nombre maximal autorisé",
     "SER000": "Erreur serveur"
+  },
+  "admins": {
+    "title": "Gestion des administrateurs",
+    "loading": "Chargement...",
+    "list_title": "Administrateurs",
+    "empty": "Aucun administrateur",
+    "remove": "Retirer",
+    "add_title": "Ajouter un administrateur",
+    "email_label": "Email",
+    "add": "Ajouter",
+    "adding": "Ajout...",
+    "confirm_deletion": "Êtes-vous sûr de vouloir retirer cet administrateur ?"
   }
 }
