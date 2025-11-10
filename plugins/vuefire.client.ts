@@ -7,7 +7,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     if (!res.ok) throw new Error('Impossible de charger le fichier de config Firebase')
 
     const env = await res.json()
-    console.log('[Firebase config loaded at runtime]:', env)
 
     const firebaseApp = initializeApp({
         apiKey: env.apiKey,

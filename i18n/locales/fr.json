@@ -9,12 +9,13 @@
     "admins": "Administration"
   },
   "home": {
-    "title": "Accueil",
-    "search_placeholder": "Rechercher une idée...",
-    "new_idea": "Nouvelle idée",
     "empty": "Aucune idée",
+    "new_idea": "Nouvelle idée",
+    "loading": "Chargement...",
+    "search_placeholder": "Rechercher une idée...",
     "sort_date": "Par date",
-    "sort_votes": "Par votes"
+    "sort_votes": "Par votes",
+    "title": "Accueil"
   },
   "idea": {
     "new_title": "Nouvelle idée",
