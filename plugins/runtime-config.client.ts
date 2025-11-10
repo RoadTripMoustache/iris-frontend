@@ -7,7 +7,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     // Expecting keys: apiBaseUrl, appTitle, appLoginTitle, appIcon
     const state = useState<any>('app:publicRuntime', () => ({}))
     Object.assign(state.value, data)
-    console.log('[Public runtime config loaded at runtime]:', data)
   } catch (e) {
     console.error('Erreur lors du chargement des configurations publiques:', e)
   }

@@ -1,14 +1,16 @@
-import { getCurrentUser } from 'vuefire'
+import {getCurrentUser} from 'vuefire'
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  // Ne pas appliquer sur la page de login pour éviter une boucle de redirection
-  if (to.path === '/login') return
+    // Do not check login pages to avoid infinite loop
+    if (to.path === '/login') return
+    if (to.path === '/fr/login') return
 
-  // Éviter l'accès Firebase côté serveur (SSR)
-  if (process.server) return
+    // Avoid checking on server side
+    if (process.server) return
 
-  const user = await getCurrentUser()
-  if (!user) {
-    return navigateTo({ path: '/login', query: { redirect: to.fullPath } })
-  }
+    const user = await getCurrentUser()
+    if (!user) {
+        const localePath = useLocalePath()
+        return navigateTo({path: localePath('/login')})
+    }
 })
