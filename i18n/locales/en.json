@@ -9,12 +9,13 @@
     "admins": "Admin"
   },
   "home": {
-    "title": "Home",
-    "search_placeholder": "Search an idea...",
-    "new_idea": "New idea",
     "empty": "No ideas",
+    "new_idea": "New idea",
+    "loading": "Loading...",
+    "search_placeholder": "Search an idea...",
     "sort_date": "By date",
-    "sort_votes": "By votes"
+    "sort_votes": "By votes",
+    "title": "Home"
   },
   "idea": {
     "new_title": "New idea",

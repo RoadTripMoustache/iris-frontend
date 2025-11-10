@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot />
-    <div ref="sentinel" class="loading" v-if="!done">{{ loading ? 'Chargement...' : '' }}</div>
+    <div ref="sentinel" class="loading" v-if="!done">{{ loading ? $t('home.loading') : '' }}</div>
   </div>
 </template>
 <script setup lang="ts">

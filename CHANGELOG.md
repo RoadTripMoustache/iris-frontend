@@ -1,7 +1,8 @@
 # CHANGELOG
 
 ## Unreleased
-
+### Fixed
+- fix: Home loading message to be i18n
 
 ## 1.1.0 [2025/11/08]
 ### Added
